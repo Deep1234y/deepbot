@@ -927,7 +927,8 @@ async def handle_message(update, context: ContextTypes.DEFAULT_TYPE):
 
 
 def start_telegram_bot():
-    BOT_TOKEN = "8721913863:AAFWaYGsfScP6mvAC8rv0Y2c489--r92h8U"
+   import os
+BOT_TOKEN = os.getenv("BOT_TOKEN")
 
     app = (
         ApplicationBuilder()
@@ -944,6 +945,7 @@ def start_telegram_bot():
 
 if __name__ == "__main__":
     start_telegram_bot()
+
 
 
 

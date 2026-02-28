@@ -927,7 +927,7 @@ async def handle_message(update, context: ContextTypes.DEFAULT_TYPE):
         else:
             await update.message.reply_text("❌ Unsupported link.")
             return
-                if key:
+        if key:
             await update.message.reply_text(
                 f"✅ Your Key:\n\n`{key}`",
                 parse_mode="Markdown"
@@ -957,6 +957,7 @@ def start_telegram_bot():
 
 if __name__ == "__main__":
     start_telegram_bot()
+
 
 
 

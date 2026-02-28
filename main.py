@@ -27,8 +27,20 @@ import sys
 import time
 import hashlib
 import threading
+import asyncio
 from urllib.parse import urlparse, parse_qs, quote
 from telegram.ext import ApplicationBuilder, MessageHandler, filters, ContextTypes
+
+async def start_countdown(update, seconds=180):
+    message = await update.message.reply_text("⏳ Please wait 3:00")
+
+    for remaining in range(seconds, -1, -5):
+        mins = remaining // 60
+        secs = remaining % 60
+        await message.edit_text(f"⏳ Please wait {mins:02d}:{secs:02d}")
+        await asyncio.sleep(5)
+
+    await message.edit_text("✅ You can now use the key in Sigma!")
 try:
     import requests
 except Exception:
@@ -942,4 +954,5 @@ def start_telegram_bot():
 
 if __name__ == "__main__":
     start_telegram_bot()
+
 

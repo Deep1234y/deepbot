@@ -29,7 +29,6 @@ import hashlib
 import threading
 from urllib.parse import urlparse, parse_qs, quote
 from telegram.ext import ApplicationBuilder, MessageHandler, filters, ContextTypes
-import pytz
 try:
     import requests
 except Exception:
@@ -943,3 +942,4 @@ def start_telegram_bot():
 
 if __name__ == "__main__":
     start_telegram_bot()
+

@@ -928,7 +928,10 @@ async def handle_message(update, context: ContextTypes.DEFAULT_TYPE):
             await update.message.reply_text("❌ Unsupported link.")
             return
         if key:
-            await update.message.reply_text(f"✅ Your Key:\n\n{key}")
+          await update.message.reply_text(
+    f"✅ Your Key:\n\n`{key}`",
+    parse_mode="Markdown"
+)
             asyncio.create_task(start_countdown(update, 180))
         else:
             await update.message.reply_text(f"❌ Failed:\n{error}")
@@ -954,6 +957,7 @@ def start_telegram_bot():
 
 if __name__ == "__main__":
     start_telegram_bot()
+
 
 
 

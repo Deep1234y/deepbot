@@ -927,25 +927,19 @@ async def handle_message(update, context: ContextTypes.DEFAULT_TYPE):
 
 
 def start_telegram_bot():
-   import os
-BOT_TOKEN = os.getenv("BOT_TOKEN")
+    import os
 
-    app = (
-        ApplicationBuilder()
-        .token(BOT_TOKEN)
-        .job_queue(None)   # 🔥 Disable JobQueue completely
+    BOT_TOKEN = os.getenv("BOT_TOKEN")  # use Railway variable
+
+    app = ApplicationBuilder() \
+        .token(BOT_TOKEN) \
+        .job_queue(None) \
         .build()
-    )
 
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_message))
 
     print("🤖 Bot started successfully...")
     app.run_polling()
 
-
 if __name__ == "__main__":
     start_telegram_bot()
-
-
-
-

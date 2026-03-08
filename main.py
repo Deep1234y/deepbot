@@ -32,8 +32,8 @@ from urllib.parse import urlparse, parse_qs, quote
 from telegram.ext import ApplicationBuilder, MessageHandler, filters, ContextTypes
 last_link_time = {}
 
-async def start_countdown(update, seconds=180):
-    message = await update.message.reply_text("⏳ Please wait 3:00")
+async def start_countdown(update, seconds=120):
+    message = await update.message.reply_text("⏳ Please wait 2:00")
 
     for remaining in range(seconds, -1, -5):
         mins = remaining // 60
@@ -966,6 +966,7 @@ def start_telegram_bot():
 
 if __name__ == "__main__":
     start_telegram_bot()
+
 
 
 

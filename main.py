@@ -30,6 +30,7 @@ import threading
 import asyncio
 from urllib.parse import urlparse, parse_qs, quote
 from telegram.ext import ApplicationBuilder, MessageHandler, filters, ContextTypes
+last_link_time = {}
 
 async def start_countdown(update, seconds=180):
     message = await update.message.reply_text("⏳ Please wait 3:00")
@@ -904,7 +905,18 @@ def handle_lksfy(key_url, session, verify, debug):
 
 
 async def handle_message(update, context: ContextTypes.DEFAULT_TYPE):
+    user_id = update.message.from_user.id
     user_message = update.message.text.strip()
+
+    now = time.time()
+
+    if user_id in last_link_time:
+        if now - last_link_time[user_id] < 120:
+            wait = int(120 - (now - last_link_time[user_id]))
+            await update.message.reply_text(f"⏳ Wait {wait} seconds before sending another link.")
+            return
+
+    last_link_time[user_id] = now
 
     if not user_message.startswith("http"):
         await update.message.reply_text("❌ Please send a valid link.")
@@ -954,6 +966,7 @@ def start_telegram_bot():
 
 if __name__ == "__main__":
     start_telegram_bot()
+
 
 
 

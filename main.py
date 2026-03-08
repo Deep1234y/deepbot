@@ -929,7 +929,7 @@ async def handle_message(update, context: ContextTypes.DEFAULT_TYPE):
             return
         if key:
             await update.message.reply_text(f"{key}")
-            asyncio.create_task(start_countdown(update, 180))
+            asyncio.create_task(start_countdown(update, 120))
         else:
             await update.message.reply_text(f"❌ Failed:\n{error}")
 
@@ -954,6 +954,7 @@ def start_telegram_bot():
 
 if __name__ == "__main__":
     start_telegram_bot()
+
 
 
 
